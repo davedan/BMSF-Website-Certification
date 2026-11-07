@@ -1,5 +1,10 @@
 import { expect, test } from '@playwright/test'
 const cms = 'http://127.0.0.1:3001'
+test('Payload administration is reachable', async ({ request }) => {
+  const response = await request.get(`${cms}/admin`)
+  expect(response.ok()).toBeTruthy()
+  expect(response.headers()['content-type']).toContain('text/html')
+})
 test('anonymous REST API exposes published works but not drafts', async ({ request }) => {
   const works = await request.get(`${cms}/api/works?depth=1`)
   expect(works.ok()).toBeTruthy()
