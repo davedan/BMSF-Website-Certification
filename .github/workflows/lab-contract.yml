@@ -18,5 +18,23 @@ jobs:
           python-version: "3.12"
       - name: Validate qualification documentation
         run: python3 scripts/validate_lab.py
-
-# This checks lab documentation only, not Astro/Payload runtime or E2E.
+  fixture:
+    runs-on: ubuntu-latest
+    env:
+      PAYLOAD_SECRET: ci-lab-secret-not-for-production
+      CMS_ORIGIN: http://127.0.0.1:3001
+      WEB_ORIGIN: http://127.0.0.1:4321
+      TEST_ADMIN_PASSWORD: fixture-admin-password
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.1'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm run test
+      - run: npm run audit:dependencies

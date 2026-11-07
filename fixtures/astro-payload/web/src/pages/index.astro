@@ -1,0 +1,7 @@
+---
+import Base from '../layouts/Base.astro'
+import { getWorks, imageUrl } from '../lib/cms'
+const works = await getWorks()
+---
+<Base title="BMSF Reference Works" description="Published works managed through Payload CMS."><h1>Reference works</h1><p>Published content is rendered from Payload without frontend source changes.</p><section aria-label="Published works">{works.map((work) => <article>{imageUrl(work.heroImage) && <img src={imageUrl(work.heroImage)} alt={typeof work.heroImage === 'string' ? '' : work.heroImage.alt} />}<h2><a href={`/works/${work.slug}`}>{work.title}</a></h2><p>{work.summary}</p></article>)}</section></Base>
+<style>section { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); } article { border: 1px solid #cbd5e1; border-radius: .5rem; overflow: hidden; padding: 1rem; background: white; } img { aspect-ratio: 3 / 2; width: 100%; object-fit: cover; }</style>

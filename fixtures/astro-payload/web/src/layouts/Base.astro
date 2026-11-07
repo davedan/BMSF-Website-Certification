@@ -1,0 +1,10 @@
+---
+import { getSite } from '../lib/cms'
+const { title = 'BMSF Reference Works', description = 'Astro and Payload qualification fixture.' } = Astro.props
+const site = await getSite()
+const canonical = new URL(Astro.url.pathname, Astro.site)
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content={description} /><link rel="canonical" href={canonical} /><meta name="robots" content="index,follow" /><title>{title}</title></head><body><header><nav aria-label="Primary navigation"><a class="brand" href="/">{site.siteName}</a><ul>{site.navigation?.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav></header><main><slot /></main></body></html>
+<style>
+  :root { color-scheme: light; font-family: system-ui, sans-serif; color: #172554; background: #f8fafc; } body { margin: 0; } main, nav { max-width: 70rem; margin: auto; padding: 1rem; } nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; } ul { display: flex; gap: 1rem; list-style: none; padding: 0; } a { color: #075985; } .brand { font-weight: 700; color: #172554; } @media (max-width: 38rem) { nav { align-items: flex-start; flex-direction: column; } ul { margin: 0; } }
+</style>
