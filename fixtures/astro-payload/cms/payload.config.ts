@@ -1,5 +1,4 @@
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { buildConfig } from 'payload'
@@ -20,6 +19,6 @@ export default buildConfig({
   cors: [process.env.WEB_ORIGIN ?? 'http://127.0.0.1:4321'],
   csrf: [process.env.CMS_ORIGIN ?? 'http://127.0.0.1:3001'],
   db: sqliteAdapter({ client: { url: databaseURL } }),
-  editor: lexicalEditor(), globals: [Site], secret, sharp,
+  globals: [Site], secret, sharp,
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
 })

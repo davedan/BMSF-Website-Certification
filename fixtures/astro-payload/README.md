@@ -34,10 +34,10 @@ Codex must submit an implementation PR with reproducible commands and actual tes
 
 ## Implemented fixture commands
 
-The fixture is an npm workspace. It pins Astro 7.4.7, Payload 3.91.0,
-Next 16.3.3 and Playwright 1.65.0 in `package-lock.json`. Payload 3.91.0 is
-used because it supports the available Node 24.13.1 runtime; the newer 3.93.0
-requires Node 24.22.1 or later.
+The fixture is an npm workspace. It pins Astro 7.4.7, Payload 3.93.0,
+Next 16.4.5 and Playwright 1.65.0 in `package-lock.json`, with Node 24.22.1
+or later. The fixture omits the unused Lexical editor package to keep its
+production dependency surface minimal.
 
 ```bash
 npm ci

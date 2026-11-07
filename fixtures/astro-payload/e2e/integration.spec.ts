@@ -22,3 +22,14 @@ test('authenticated editor can publish a content update seen through the public 
   expect(update.ok()).toBeTruthy()
   expect((await request.get(`${cms}/api/works/${id}`)).ok()).toBeTruthy()
 })
+test('a published CMS update is rendered by Astro', async ({ request }) => {
+  const login = await request.post(`${cms}/api/users/login`, { data: { email: 'admin@example.test', password: 'fixture-admin-password' } })
+  const { token } = await login.json()
+  const work = await request.get(`${cms}/api/works?where[slug][equals]=published-reference-work`)
+  const id = (await work.json()).docs[0].id
+  const summary = 'Published CMS update rendered by Astro.'
+  const update = await request.patch(`${cms}/api/works/${id}`, { headers: { authorization: `JWT ${token}` }, data: { summary, _status: 'published' } })
+  expect(update.ok()).toBeTruthy()
+  const page = await request.get('http://127.0.0.1:4321/')
+  expect(await page.text()).toContain(summary)
+})

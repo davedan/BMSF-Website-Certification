@@ -15,5 +15,6 @@
     "audit:dependencies": "npm audit --omit=dev"
   },
   "devDependencies": { "@playwright/test": "1.65.0", "typescript": "5.9.3" },
-  "engines": { "node": ">=24.13.1 <25", "npm": ">=11" }
+  "overrides": { "monaco-editor": { "dompurify": "3.4.17" } },
+  "engines": { "node": ">=24.22.1 <25", "npm": ">=11" }
 }

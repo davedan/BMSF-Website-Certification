@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-11-07T11:02:33Z",
+  "sourceCommit": "d9f40bb6d1ae66c4103a065169d18bb4345e9eaf",
+  "command": "npm audit --omit=dev --json",
+  "environment": "GitHub Actions ubuntu-latest, Node 24.22.1, npm 11",
+  "exitCode": 1,
+  "summary": { "low": 7, "moderate": 5, "high": 0, "critical": 1, "total": 13 },
+  "vulnerabilities": [
+    { "package": "deepmerge", "severity": "low", "advisories": ["GHSA-gcqx-w48m-w2h4"], "path": "payload -> deepmerge", "fix": "none" },
+    { "package": "dompurify", "severity": "critical", "advisories": ["GHSA-p98j-92pf-mc4p", "GHSA-6688-9rhm-gjv2", "GHSA-cg2g-xh64-v4q7", "GHSA-mrv2-3pqr-j5jr", "GHSA-c6gr-qvv4-5v3f"], "path": "@payloadcms/ui -> @monaco-editor/react -> monaco-editor@0.57.0 -> dompurify@3.4.15", "fix": "npm reports a fix, but Monaco pins 3.4.15 and the root override is not resolved into the lockfile" },
+    { "package": "esbuild", "severity": "moderate", "advisories": ["GHSA-67mh-4wv8-2f99", "GHSA-g7r4-m6w7-qqqr"], "path": "@payloadcms/db-sqlite -> drizzle-kit -> @esbuild-kit/esm-loader -> @esbuild-kit/core-utils -> esbuild", "fix": "none" },
+    { "package": "@esbuild-kit/core-utils", "severity": "moderate", "advisories": ["esbuild transitive"], "path": "drizzle-kit -> @esbuild-kit/esm-loader -> @esbuild-kit/core-utils", "fix": "available" },
+    { "package": "@esbuild-kit/esm-loader", "severity": "moderate", "advisories": ["@esbuild-kit/core-utils transitive"], "path": "drizzle-kit -> @esbuild-kit/esm-loader", "fix": "available" },
+    { "package": "drizzle-kit", "severity": "moderate", "advisories": ["@esbuild-kit/esm-loader transitive"], "path": "@payloadcms/db-sqlite -> drizzle-kit", "fix": "available" },
+    { "package": "@payloadcms/db-sqlite", "severity": "moderate", "advisories": ["payload/drizzle transitive"], "path": "direct dependency", "fix": "none" },
+    { "package": "payload", "severity": "low", "advisories": ["deepmerge transitive"], "path": "direct dependency", "fix": "none" },
+    { "package": "@payloadcms/next", "severity": "low", "advisories": ["payload UI/GraphQL transitive"], "path": "direct dependency", "fix": "none" },
+    { "package": "@payloadcms/ui", "severity": "low", "advisories": ["payload transitive"], "path": "@payloadcms/next -> @payloadcms/ui", "fix": "available" },
+    { "package": "@payloadcms/graphql", "severity": "low", "advisories": ["payload transitive"], "path": "@payloadcms/next -> @payloadcms/graphql", "fix": "available" },
+    { "package": "@payloadcms/drizzle", "severity": "low", "advisories": ["payload transitive"], "path": "@payloadcms/db-sqlite -> @payloadcms/drizzle", "fix": "available" },
+    { "package": "monaco-editor", "severity": "low", "advisories": ["dompurify transitive"], "path": "@payloadcms/ui -> @monaco-editor/react -> monaco-editor@0.57.0", "fix": "available" }
+  ],
+  "decision": "BLOCKED: no security exception, audit suppression or forced downgrade applied. Upstream must publish a Payload UI/Monaco dependency path that removes the exact vulnerable DOMPurify pin."
+}
