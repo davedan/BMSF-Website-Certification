@@ -22,7 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PAYLOAD_SECRET: ci-lab-secret-not-for-production
-      DATABASE_URL: file:./data/payload.db
       CMS_ORIGIN: http://127.0.0.1:3001
       WEB_ORIGIN: http://127.0.0.1:4321
       TEST_ADMIN_PASSWORD: fixture-admin-password
