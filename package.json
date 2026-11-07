@@ -10,7 +10,7 @@
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test:integration": "playwright test --project=integration",
     "test:e2e": "playwright test --project=chromium",
-    "test": "npm run test:integration && npm run test:e2e",
+    "test": "playwright test",
     "test:prepare": "node fixtures/astro-payload/scripts/prepare-test.mjs",
     "audit:dependencies": "npm audit --omit=dev"
   },
