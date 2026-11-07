@@ -1,0 +1,32 @@
+{
+  "recordedAt": "2026-11-07T11:23:00Z",
+  "sourceCommit": "db7ed5469a93234ec0f6779218cd352d33ebb721",
+  "ciRun": "https://github.com/davedan/BMSF-Website-Certification/actions/runs/42367804330",
+  "environment": "GitHub Actions ubuntu-latest, Node 24.22.1, npm 11",
+  "rootCause": {
+    "pathBefore": "@payloadcms/ui -> @monaco-editor/react -> monaco-editor@0.57.0 -> dompurify@3.4.15",
+    "advisories": ["GHSA-p98j-92pf-mc4p", "GHSA-6688-9rhm-gjv2", "GHSA-cg2g-xh64-v4q7", "GHSA-mrv2-3pqr-j5jr", "GHSA-c6gr-qvv4-5v3f"],
+    "severityBefore": "critical"
+  },
+  "remediation": {
+    "mechanism": "root npm override for monaco-editor.dompurify, materialized by clean lockfile regeneration",
+    "dompurifyBefore": "3.4.15",
+    "dompurifyAfter": "3.4.17",
+    "reproducibleCommand": "npm install --package-lock-only --ignore-scripts --no-audit"
+  },
+  "validation": {
+    "npmCi": "PASS",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "playwright": "PASS: 7 tests, including Payload /admin reachability and published Payload update rendered by Astro SSR",
+    "auditCommand": "npm audit --omit=dev",
+    "auditExitCode": 1,
+    "after": { "low": 6, "moderate": 5, "high": 0, "critical": 0, "total": 11 }
+  },
+  "remainingPaths": [
+    "payload -> deepmerge (low, no fix available)",
+    "@payloadcms/db-sqlite -> drizzle-kit -> @esbuild-kit/esm-loader -> esbuild (moderate, no fix available)"
+  ],
+  "decision": "The critical DOMPurify finding is resolved. The strict audit command remains non-zero for 11 low/moderate advisories; no severity suppression, risk acceptance or policy waiver was applied."
+}
