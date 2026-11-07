@@ -1,6 +1,6 @@
 # Astro + Payload certification fixture
 
-**Status: NOT YET IMPLEMENTED.** This document is the Codex implementation handoff. It is not evidence of a working application.
+**Status: IMPLEMENTED FOR LABORATORY QUALIFICATION; NOT CERTIFIED.** The fixture has CI evidence for its build and runtime tests, but dependency-security remediation, canonical registry consumption, independent QA and Owner approval remain open gates.
 
 ## Scope
 
