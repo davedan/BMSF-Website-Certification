@@ -9,7 +9,7 @@
 
 `package.json` constrains `monaco-editor > dompurify` to `3.4.17`; the regenerated root lockfile records `node_modules/monaco-editor/node_modules/dompurify` at `3.4.17`, replacing `3.4.15`. GitHub Actions run `42367804330` performed a clean `npm ci` with this lockfile and passed the fixture build and seven tests. This removes the previously reported critical DOMPurify path, but is not a whole-program security PASS.
 
-The existing REST test performs an authenticated editor update. This branch additionally contains a Chromium interaction which logs in to `/admin/login`, opens the `Works` screen, and observes the seeded record. The first clean CI run (`42370126265`) found a real admin defect: the route loaded the placeholder TypeScript import map while `payload generate:importmap` wrote `importMap.js` elsewhere. The configuration now pins generation and both admin consumers to the route's tracked `importMap.ts`; its evidence remains pending until the correction CI has completed.
+The existing REST test performs an authenticated editor update. This branch additionally creates an authenticated session in the Chromium page context through the CMS login endpoint, opens the rendered `Works` screen, and observes the seeded record. The first clean CI run (`42370126265`) found a real admin defect: the route loaded the placeholder TypeScript import map while `payload generate:importmap` wrote `importMap.js` elsewhere. The configuration now pins generation and both admin consumers to the route's tracked `importMap.ts`; its evidence remains pending until the correction CI has completed.
 
 ## Complete npm-audit inventory
 
