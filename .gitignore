@@ -19,6 +19,6 @@ fixtures/astro-payload/cms/media/
 fixtures/astro-payload/cms/.env
 fixtures/astro-payload/cms/next-env.d.ts
 fixtures/astro-payload/cms/payload-types.ts
-fixtures/astro-payload/cms/src/app/(payload)/admin/importMap.js
+*.tsbuildinfo
 *.log
 .DS_Store
