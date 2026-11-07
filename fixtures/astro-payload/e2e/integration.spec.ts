@@ -5,6 +5,16 @@ test('Payload administration is reachable', async ({ request }) => {
   expect(response.ok()).toBeTruthy()
   expect(response.headers()['content-type']).toContain('text/html')
 })
+test('an authenticated administrator can open the Payload Works screen', async ({ page }) => {
+  await page.goto(`${cms}/admin/login`)
+  await page.locator('input[name="email"]').fill('admin@example.test')
+  await page.locator('input[name="password"]').fill('fixture-admin-password')
+  await page.getByRole('button', { name: /log in|login/i }).click()
+  await page.waitForURL(/\/admin(?:\/)?$/)
+  await page.getByRole('link', { name: 'Works', exact: true }).click()
+  await expect(page).toHaveURL(/\/admin\/collections\/works/)
+  await expect(page.getByText('Published reference work')).toBeVisible()
+})
 test('anonymous REST API exposes published works but not drafts', async ({ request }) => {
   const works = await request.get(`${cms}/api/works?depth=1`)
   expect(works.ok()).toBeTruthy()
