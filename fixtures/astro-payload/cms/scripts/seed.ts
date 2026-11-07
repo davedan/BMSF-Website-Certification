@@ -10,7 +10,13 @@ const { default: config } = await import('../payload.config.js')
 await rm(path.resolve(dirname, '../data'), { force: true, recursive: true })
 await rm(path.resolve(dirname, '../media'), { force: true, recursive: true })
 const payload = await getPayload({ config })
-const image = new File(['<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="1200" height="800" fill="#172554"/><circle cx="600" cy="400" r="220" fill="#38bdf8"/></svg>'], 'reference-work.svg', { type: 'image/svg+xml' })
+const imageMarkup = '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="1200" height="800" fill="#172554"/><circle cx="600" cy="400" r="220" fill="#38bdf8"/></svg>'
+const image = {
+  data: Buffer.from(imageMarkup),
+  mimetype: 'image/svg+xml',
+  name: 'reference-work.svg',
+  size: Buffer.byteLength(imageMarkup),
+}
 const heroImage = await payload.create({ collection: 'media', data: { alt: 'Blue geometric illustration for the reference work' }, file: image, overrideAccess: true })
 await payload.create({ collection: 'users', data: { email: 'admin@example.test', password: process.env.TEST_ADMIN_PASSWORD ?? 'change-me', role: 'admin' }, overrideAccess: true })
 await payload.updateGlobal({ slug: 'site', data: { siteName: 'BMSF Reference Works', navigation: [{ label: 'Works', href: '/' }] }, overrideAccess: true })
