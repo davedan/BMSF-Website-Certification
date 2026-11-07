@@ -4,7 +4,7 @@ import '@payloadcms/next/css'
 import { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts'
 import type { ServerFunctionClient } from 'payload'
 import React from 'react'
-import { importMap } from './admin/importMap.js'
+import { importMap } from './admin/importMap'
 
 const serverFunction: ServerFunctionClient = async (args) => {
   'use server'

@@ -17,5 +17,8 @@ uploads/
 fixtures/astro-payload/cms/data/
 fixtures/astro-payload/cms/media/
 fixtures/astro-payload/cms/.env
+fixtures/astro-payload/cms/next-env.d.ts
+fixtures/astro-payload/cms/payload-types.ts
+*.tsbuildinfo
 *.log
 .DS_Store

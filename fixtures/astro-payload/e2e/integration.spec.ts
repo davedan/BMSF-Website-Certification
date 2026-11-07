@@ -5,6 +5,14 @@ test('Payload administration is reachable', async ({ request }) => {
   expect(response.ok()).toBeTruthy()
   expect(response.headers()['content-type']).toContain('text/html')
 })
+test('an authenticated administrator can open the Payload Works screen', async ({ page }) => {
+  const login = await page.request.post(`${cms}/api/users/login`, {
+    data: { email: 'admin@example.test', password: 'fixture-admin-password' },
+  })
+  expect(login.ok()).toBeTruthy()
+  await page.goto(`${cms}/admin/collections/works`)
+  await expect(page.getByText('Published reference work')).toBeVisible()
+})
 test('anonymous REST API exposes published works but not drafts', async ({ request }) => {
   const works = await request.get(`${cms}/api/works?depth=1`)
   expect(works.ok()).toBeTruthy()

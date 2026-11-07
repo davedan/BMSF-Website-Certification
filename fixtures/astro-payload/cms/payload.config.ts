@@ -14,7 +14,13 @@ if (!secret) throw new Error('PAYLOAD_SECRET must be set. Use the ignored cms/.e
 const databaseURL = process.env.DATABASE_URL ?? pathToFileURL(path.resolve(dirname, 'data/payload.db')).toString()
 
 export default buildConfig({
-  admin: { user: Users.slug, importMap: { baseDir: path.resolve(dirname) } },
+  admin: {
+    user: Users.slug,
+    importMap: {
+      baseDir: path.resolve(dirname),
+      importMapFile: path.resolve(dirname, 'src/app/(payload)/admin/importMap.ts'),
+    },
+  },
   collections: [Users, Media, Works],
   cors: [process.env.WEB_ORIGIN ?? 'http://127.0.0.1:4321'],
   csrf: [process.env.CMS_ORIGIN ?? 'http://127.0.0.1:3001'],
