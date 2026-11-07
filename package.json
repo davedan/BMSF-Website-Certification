@@ -1,0 +1,19 @@
+{
+  "name": "bmsf-website-certification",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["fixtures/astro-payload/cms", "fixtures/astro-payload/web"],
+  "scripts": {
+    "build": "npm run generate --workspace=cms && npm run build --workspaces --if-present",
+    "generate": "npm run generate --workspace=cms",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test:integration": "playwright test --project=integration",
+    "test:e2e": "playwright test --project=chromium",
+    "test": "npm run test:integration && npm run test:e2e",
+    "test:prepare": "node fixtures/astro-payload/scripts/prepare-test.mjs",
+    "audit:dependencies": "npm audit --omit=dev"
+  },
+  "devDependencies": { "@playwright/test": "1.65.0", "typescript": "5.9.3" },
+  "engines": { "node": ">=24.13.1 <25", "npm": ">=11" }
+}

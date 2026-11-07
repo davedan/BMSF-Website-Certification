@@ -14,5 +14,8 @@ test-results/
 *.db
 *.db-*
 uploads/
+fixtures/astro-payload/cms/data/
+fixtures/astro-payload/cms/media/
+fixtures/astro-payload/cms/.env
 *.log
 .DS_Store
