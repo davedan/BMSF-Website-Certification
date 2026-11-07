@@ -51,3 +51,7 @@ npm audit --omit=dev --json
 ```
 
 The final audit is expected to return non-zero while the listed findings remain. This document is an evidence/inventory artifact, not a policy change or certification.
+
+## CI verification
+
+GitHub Actions run `42371085461` on commit `b4b8dda5895faf5d1f5241b7e0d8797c6e3d9012` completed clean `npm ci`, browser installation, lint, typecheck, production build and all eight Playwright tests successfully. The final strict audit then returned the inventory above (6 low, 5 moderate; 0 high, 0 critical) and exit code 1. The failed workflow is therefore a deliberate remaining security gate, not a failed integration/build/test claim.
