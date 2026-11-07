@@ -1,5 +1,5 @@
 import { config as loadEnv } from 'dotenv'
-import { rm } from 'node:fs/promises'
+import { mkdir, rm } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { getPayload } from 'payload'
@@ -9,6 +9,8 @@ loadEnv({ path: path.resolve(dirname, '../.env') })
 const { default: config } = await import('../payload.config.js')
 await rm(path.resolve(dirname, '../data'), { force: true, recursive: true })
 await rm(path.resolve(dirname, '../media'), { force: true, recursive: true })
+await mkdir(path.resolve(dirname, '../data'), { recursive: true })
+await mkdir(path.resolve(dirname, '../media'), { recursive: true })
 const payload = await getPayload({ config })
 const imageMarkup = '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="1200" height="800" fill="#172554"/><circle cx="600" cy="400" r="220" fill="#38bdf8"/></svg>'
 const image = {
